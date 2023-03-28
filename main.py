@@ -9,7 +9,7 @@ window.tracer(0)
 bar_colors = ["purple", "green", "yellow", "orange", "red"]
 bar_x_position = -335
 bar_y_position = 0
-bar = Bar()
+bars = []
 
 for color in bar_colors:
     for n in range(1, 8):
