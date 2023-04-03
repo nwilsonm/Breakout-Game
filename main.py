@@ -1,14 +1,17 @@
 #1. crear la interfaz con tkinter
+from turtle import *
 from bars_brain import *
+from paddle_brain import *
 
-window = Screen()
-window.bgcolor("black")
-window.setup(width=800, height=600)
-window.tracer(0)
+screen = Screen()
+screen.bgcolor("black")
+screen.setup(width=800, height=600)
+screen.tracer(0)
+
 
 bar_colors = ["purple", "green", "yellow", "orange", "red"]
 bar_x_position = -335
-bar_y_position = 0
+bar_y_position = 110
 bars = []
 
 for color in bar_colors:
@@ -20,17 +23,19 @@ for color in bar_colors:
         if bar_x_position == 435:
             bar_x_position = -335
             bar_y_position += 30
-    window.update()
+
+paddle = Paddle()
+
+screen.listen()
+screen.onkeypress(paddle.move_right, "Right")
+screen.onkeypress(paddle.move_left, "Left")
 
 
+game_is_on = True
+while game_is_on:
+    screen.update()
 
-
-
-
-
-
-
-window.mainloop()
+screen.mainloop()
 
 
 #2. crear un clase para el cerebro de las barras de colores que se puede importar al main
