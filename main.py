@@ -1,7 +1,8 @@
 #1. crear la interfaz con tkinter
-from turtle import *
+import time
 from bars_brain import *
 from paddle_brain import *
+from ball_brain import Ball
 
 screen = Screen()
 screen.bgcolor("black")
@@ -25,15 +26,25 @@ for color in bar_colors:
             bar_y_position += 30
 
 paddle = Paddle()
+ball = Ball()
 
 screen.listen()
 screen.onkeypress(paddle.move_right, "Right")
 screen.onkeypress(paddle.move_left, "Left")
 
-
 game_is_on = True
 while game_is_on:
+
     screen.update()
+    ball.move()
+    if ball.ycor() > 290:
+        ball.roof_bounce()
+    if ball.xcor() < -392 or ball.xcor() > 383:
+        ball.side_bounce()
+    if ball.ycor() < -262 and ball.distance(paddle) < 80:
+        ball.roof_bounce()
+    if ball.ycor() < -269:
+        print("perdiste")
 
 screen.mainloop()
 
